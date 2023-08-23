@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
     PlayerControls playerControls;
     AnimatorManager animatorManager;
+    public ApplyDamage applyDamageScript;
     
     public Vector2 movementInput;
     public Vector2 cameraInput;
@@ -52,12 +54,23 @@ public class InputManager : MonoBehaviour
         if (!animatorManager.animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
             canAttackAgain = true;
+            applyDamageScript.alreadyDamaged = false;
         }
         else
         {
+            if (!applyDamageScript.alreadyDamaged)
+            {
+                applyDamageScript.alreadyDamaged = true;
+                Invoke("StrongAttack", 1f);
+            }
             canAttackAgain = false;
         }
         HandleMovementInput();
+    }
+
+    public void StrongAttack()
+    {
+        applyDamageScript.DamageIt();
     }
     private void HandleMovementInput()
     {
