@@ -6,10 +6,14 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     InputManager inputManager;
+    AnimatorManager animatorManager;
     PlayerLocomotion playerLocomotion;
+    CameraManager cameraManager;
     private void Awake()
     {
         inputManager = GetComponent<InputManager>();
+        animatorManager = GetComponent<AnimatorManager>();
+        cameraManager = FindObjectOfType<CameraManager>();
         playerLocomotion = GetComponent<PlayerLocomotion>();
     }
 
@@ -20,6 +24,10 @@ public class PlayerManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        playerLocomotion.HandleAllMovements();
+        if(inputManager.canAttackAgain) playerLocomotion.HandleAllMovements();
+    }
+    private void LateUpdate()
+    {
+        cameraManager.HandleAllCameraMovement();
     }
 }
