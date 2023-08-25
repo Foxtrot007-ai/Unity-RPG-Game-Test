@@ -25,6 +25,12 @@ public class InputManager : MonoBehaviour
     public bool stateBLock = false;
     public bool stateLoco = false;
 
+    public GameObject StrongAttackHitbox;
+    public GameObject WirlAttackHitbox;
+    public GameObject WirlEffectPoint;
+    public GameObject electricSlash;
+    public Transform savedEffectPoint;
+
     private float moveAmount;
     public float verticalInput;
     public float horizontalInput;
@@ -79,6 +85,18 @@ public class InputManager : MonoBehaviour
             {
                 usingMoveStarted = true;
             }
+            
+            if(animationState == 1)
+            {
+                StrongAttackHitbox.GetComponent<ApplyDamage>().UseIt(1f);
+            }
+
+            if (animationState == 2)
+            {
+                WirlAttackHitbox.GetComponent<ApplyDamage>().UseIt(1f);
+                savedEffectPoint = WirlEffectPoint.transform;
+                Invoke("MakeWirlEffect", 0.7f);
+            }
         }
         else
         {
@@ -92,6 +110,12 @@ public class InputManager : MonoBehaviour
         HandleMovementInput();
     }
 
+    public void MakeWirlEffect()
+    {
+        GameObject temp = Instantiate(electricSlash, savedEffectPoint.position, savedEffectPoint.rotation);
+        temp.transform.localScale = new Vector3(6, 6, 6);
+        Destroy(temp, 0.3f);
+    }
    
     private void HandleMovementInput()
     {

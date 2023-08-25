@@ -5,20 +5,22 @@ using UnityEngine;
 public class ApplyDamage : MonoBehaviour
 {
     public InputManager inputManager;
-    public bool canDamage = true;
-    public bool alreadyDamaged = false;
     public Collider target;
     private void Awake()
     {
         target = null;
         inputManager = FindObjectOfType<InputManager>();
     }
+
+    public void UseIt(float time)
+    {
+        Invoke("DamageIt", time);
+    }
     public void DamageIt()
     {
         if(target != null)
         {
             target.GetComponentInChildren<DummyScript>().DamageIt();
-            target = null;
         }
     }
 
@@ -27,12 +29,14 @@ public class ApplyDamage : MonoBehaviour
         if (other.tag == "Dummy")
         {
             target = other;
-            canDamage = true;
         }
-        else canDamage = false;
     }
+
     private void OnTriggerExit(Collider other)
     {
-        canDamage = false;
+        if (other.tag == "Dummy")
+        {
+            target = null;
+        }
     }
 }
