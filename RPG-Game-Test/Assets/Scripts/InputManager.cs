@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour
-{
+{ 
+
     PlayerControls playerControls;
     AnimatorManager animatorManager;
     public ApplyDamage applyDamageScript;
@@ -15,8 +17,13 @@ public class InputManager : MonoBehaviour
     public float cameraInputX;
     public float cameraInputY;
 
-    public bool attacking = false;
-    public bool canAttackAgain = true;
+    public bool strongAttackUsed = false;
+    public bool wirlAttackUsed = false;
+    public bool blockUsed = false;
+    public bool usingMoveStarted = false;
+    public int animationState = 0;
+    public bool stateBLock = false;
+    public bool stateLoco = false;
 
     private float moveAmount;
     public float verticalInput;
@@ -24,8 +31,8 @@ public class InputManager : MonoBehaviour
     private void Awake()
     {
         Cursor.visible = false;
-        attacking = false;
-        canAttackAgain = true;
+        usingMoveStarted = false;
+        animationState = 0;
         animatorManager = GetComponent<AnimatorManager>();
     }
     private void OnEnable()
@@ -35,11 +42,13 @@ public class InputManager : MonoBehaviour
             playerControls = new PlayerControls();
             playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
             playerControls.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
-            playerControls.PlayerMovement.Attack.performed += i => attacking = true;
-            playerControls.PlayerMovement.Attack.canceled += i => attacking = false;
-            
+            playerControls.PlayerMovement.StrongAttack.performed += i => strongAttackUsed = true;
+            playerControls.PlayerMovement.StrongAttack.canceled += i => strongAttackUsed = false;
+            playerControls.PlayerMovement.WirlAttack.performed += i => wirlAttackUsed = true;
+            playerControls.PlayerMovement.WirlAttack.canceled += i => wirlAttackUsed = false;
+            playerControls.PlayerMovement.Block.performed += i => blockUsed = true;
+            playerControls.PlayerMovement.Block.canceled += i => blockUsed = false;
         }
-
         playerControls.Enable();
     }
 
@@ -50,28 +59,40 @@ public class InputManager : MonoBehaviour
 
     public void HandleAllInputs()
     {
-        
-        if (!animatorManager.animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        if (!usingMoveStarted)
         {
-            canAttackAgain = true;
-            applyDamageScript.alreadyDamaged = false;
+            animationState = 0;
+            if (strongAttackUsed)
+            {
+                animationState = 1;
+            }
+            if (wirlAttackUsed)
+            {
+                animationState = 2;
+            }
+            if (blockUsed)
+            {
+                animationState = 3;
+            }
+
+            if (animationState != 0)
+            {
+                usingMoveStarted = true;
+            }
         }
         else
         {
-            if (!applyDamageScript.alreadyDamaged)
+            if (animatorManager.animator.GetCurrentAnimatorStateInfo(0).IsName("Locomotion"))
             {
-                applyDamageScript.alreadyDamaged = true;
-                Invoke("StrongAttack", 1f);
+                usingMoveStarted = false;
             }
-            canAttackAgain = false;
         }
+      
+
         HandleMovementInput();
     }
 
-    public void StrongAttack()
-    {
-        applyDamageScript.DamageIt();
-    }
+   
     private void HandleMovementInput()
     {
         verticalInput = movementInput.y;
@@ -81,6 +102,7 @@ public class InputManager : MonoBehaviour
         cameraInputY = cameraInput.y;
 
         moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
-        animatorManager.UpdateAnimatorValues(0, moveAmount, attacking && canAttackAgain, canAttackAgain);
+
+        animatorManager.UpdateAnimatorValues(0, moveAmount, animationState, usingMoveStarted);
     }
 }

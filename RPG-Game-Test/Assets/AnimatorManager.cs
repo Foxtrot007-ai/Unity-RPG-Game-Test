@@ -7,21 +7,21 @@ public class AnimatorManager : MonoBehaviour
     public Animator animator;
     int horizontal;
     int vertical;
-    int attack;
-    int canAttack;
+    int state;
+    int can;
     private void Awake()
     {
         animator = GetComponent<Animator>();
         horizontal = Animator.StringToHash("Horizontal");
         vertical = Animator.StringToHash("Vertical");
-        attack = Animator.StringToHash("IsAttacking");
-        canAttack = Animator.StringToHash("CanAttackAgain");
+        state = Animator.StringToHash("State");
+        can = Animator.StringToHash("CanUseMove");
     }
-    public void UpdateAnimatorValues(float horizontalMovement, float verticalMovement, bool mouseClicked, bool can)
+    public void UpdateAnimatorValues(float horizontalMovement, float verticalMovement, int specificButton, bool usingMoveStarted)
     {
         animator.SetFloat(horizontal, horizontalMovement, 0.1f, Time.deltaTime);
         animator.SetFloat(vertical, verticalMovement, 0.1f, Time.deltaTime);
-        animator.SetBool(attack, mouseClicked);
-        animator.SetBool(canAttack, can);
+        animator.SetInteger(state, specificButton);
+        animator.SetBool(can, usingMoveStarted);
     }
 }

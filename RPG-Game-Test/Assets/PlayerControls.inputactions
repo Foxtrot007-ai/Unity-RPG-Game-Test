@@ -24,9 +24,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Attack",
+                    "name": "StrongAttack",
                     "type": "Button",
                     "id": "83a49382-e278-49b9-b72f-105b6bdbdca6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "WirlAttack",
+                    "type": "Button",
+                    "id": "3b0f31ec-93a6-4285-b251-2098775d1960",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Block",
+                    "type": "Button",
+                    "id": "d3b39b4b-ae17-46b2-a8fc-37c7ee0f22a8",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -107,7 +125,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Attack",
+                    "action": "StrongAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fa8fcf67-b7f0-4018-acfe-0ebf8382382d",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "WirlAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "433a37d9-50db-4b57-a313-4a24fefa666c",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Block",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -24,7 +24,7 @@ public class PlayerManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(inputManager.canAttackAgain) playerLocomotion.HandleAllMovements();
+        if(!inputManager.usingMoveStarted) playerLocomotion.HandleAllMovements();
     }
     private void LateUpdate()
     {
