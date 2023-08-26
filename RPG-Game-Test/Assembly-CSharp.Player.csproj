@@ -65,6 +65,7 @@
     <Compile Include="Assets\PlayerControls.cs" />
     <Compile Include="Assets\Scripts\PlayerLocomotion.cs" />
     <Compile Include="Assets\CameraManager.cs" />
+    <Compile Include="Assets\EnemyAI.cs" />
     <Compile Include="Assets\DummyScript.cs" />
   </ItemGroup>
   <ItemGroup>

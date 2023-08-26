@@ -363,6 +363,7 @@
 "Assets/ApplyDamage.cs"
 "Assets/CameraManager.cs"
 "Assets/DummyScript.cs"
+"Assets/EnemyAI.cs"
 "Assets/PlayerControls.cs"
 "Assets/Scripts/InputManager.cs"
 "Assets/Scripts/PlayerLocomotion.cs"
