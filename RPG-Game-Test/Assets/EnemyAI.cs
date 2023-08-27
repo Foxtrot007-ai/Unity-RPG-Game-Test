@@ -7,7 +7,7 @@ public class EnemyAI : MonoBehaviour
 {
     public NavMeshAgent agent;
     public Transform player;
-
+    public int level;
     public LayerMask whatIsGround, whatIsPlayer;
 
     //animation
@@ -108,6 +108,7 @@ public class EnemyAI : MonoBehaviour
         {
             //attacking
             Debug.Log("Attack player");
+            Invoke(nameof(useAttack), 0.5f);
             animationState = 2;
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
@@ -116,6 +117,10 @@ public class EnemyAI : MonoBehaviour
         {
             animationState = 0;
         }
+    }
+    private void useAttack()
+    {
+        GameObject.FindGameObjectWithTag("Player").gameObject.GetComponentInChildren<DummyScript>().DamageIt();
     }
     private void ResetAttack()
     {

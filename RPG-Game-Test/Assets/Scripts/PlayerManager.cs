@@ -9,6 +9,10 @@ public class PlayerManager : MonoBehaviour
     AnimatorManager animatorManager;
     PlayerLocomotion playerLocomotion;
     CameraManager cameraManager;
+    public int experiencePoints = 0;
+    public int experienceLimit = 100;
+    public int level = 1;
+
     private void Awake()
     {
         inputManager = GetComponent<InputManager>();
@@ -29,5 +33,16 @@ public class PlayerManager : MonoBehaviour
     private void LateUpdate()
     {
         cameraManager.HandleAllCameraMovement();
+    }
+    public void AddExperiencePoints(int enemyLvl)
+    {
+        experiencePoints += enemyLvl * 10;
+        if(experiencePoints > experienceLimit)
+        {
+            experiencePoints = 0;
+            experienceLimit += 50;
+            level += 1;
+            GetComponentInChildren<DummyScript>().maxHp = level * 80;
+        }
     }
 }
