@@ -364,6 +364,7 @@
 "Assets/CameraManager.cs"
 "Assets/DummyScript.cs"
 "Assets/EnemyAI.cs"
+"Assets/EnemySpawner.cs"
 "Assets/PlayerControls.cs"
 "Assets/Scripts/InputManager.cs"
 "Assets/Scripts/PlayerLocomotion.cs"

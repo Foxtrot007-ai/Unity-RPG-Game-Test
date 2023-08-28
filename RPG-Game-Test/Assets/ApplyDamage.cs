@@ -5,22 +5,23 @@ using UnityEngine;
 public class ApplyDamage : MonoBehaviour
 {
     public InputManager inputManager;
-    public Collider target;
+    public List<Collider> targets = new List<Collider>();
+    public int DamageAmount;
     private void Awake()
     {
-        target = null;
         inputManager = FindObjectOfType<InputManager>();
     }
 
-    public void UseIt(float time)
+    public void UseIt(float time, int damage)
     {
+        DamageAmount = damage;
         Invoke("DamageIt", time);
     }
     public void DamageIt()
     {
-        if(target != null)
+        foreach(Collider col in targets)
         {
-            target.GetComponentInChildren<DummyScript>().DamageIt();
+            col.GetComponentInChildren<DummyScript>().DamageIt(DamageAmount);
         }
     }
 
@@ -28,7 +29,7 @@ public class ApplyDamage : MonoBehaviour
     {
         if (other.tag == "Dummy")
         {
-            target = other;
+            targets.Add(other);
         }
     }
 
@@ -36,7 +37,7 @@ public class ApplyDamage : MonoBehaviour
     {
         if (other.tag == "Dummy")
         {
-            target = null;
+            targets.Remove(other);
         }
     }
 }

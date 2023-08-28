@@ -31,6 +31,8 @@ public class EnemyAI : MonoBehaviour
     public bool playerInAttackRange;
 
     //waiting
+    public EnemySpawner enemySpawner;
+    public int myNumber;
     public GameObject spawnPoint;
     public bool returnedToSpawn;
     
@@ -120,7 +122,7 @@ public class EnemyAI : MonoBehaviour
     }
     private void useAttack()
     {
-        GameObject.FindGameObjectWithTag("Player").gameObject.GetComponentInChildren<DummyScript>().DamageIt();
+        GameObject.FindGameObjectWithTag("Player").gameObject.GetComponentInChildren<DummyScript>().DamageIt(level * 10);
     }
     private void ResetAttack()
     {

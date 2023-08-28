@@ -88,12 +88,21 @@ public class InputManager : MonoBehaviour
             
             if(animationState == 1)
             {
-                StrongAttackHitbox.GetComponent<ApplyDamage>().UseIt(1f);
+                int lvl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>().level;
+                int crit = Random.Range(1, 100);
+                int dmg = lvl * 15;
+                if(crit > 70)
+                {
+                    dmg *= 3;
+                }
+                StrongAttackHitbox.GetComponent<ApplyDamage>().UseIt(1f, dmg);
             }
 
             if (animationState == 2)
             {
-                WirlAttackHitbox.GetComponent<ApplyDamage>().UseIt(1f);
+                int lvl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>().level;
+                int dmg = lvl * 20;
+                WirlAttackHitbox.GetComponent<ApplyDamage>().UseIt(1f, dmg);
                 savedEffectPoint = WirlEffectPoint.transform;
                 Invoke("MakeWirlEffect", 0.7f);
             }

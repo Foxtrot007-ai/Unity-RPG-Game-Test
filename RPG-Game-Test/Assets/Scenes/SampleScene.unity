@@ -218,6 +218,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 440028081}
+  - component: {fileID: 440028082}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -242,6 +243,18 @@ Transform:
   - {fileID: 221067949}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &440028082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440028080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f50b739af802244bb57db4f499c61b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,7 +729,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3194148328934554149, guid: 8506895a37ca4c4448873178b0702e2e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 314.8
+      value: 320
       objectReference: {fileID: 0}
     - target: {fileID: 3194148328934554149, guid: 8506895a37ca4c4448873178b0702e2e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -724,7 +737,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3194148328934554149, guid: 8506895a37ca4c4448873178b0702e2e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 204.3
+      value: 204.9
       objectReference: {fileID: 0}
     - target: {fileID: 3194148328934554149, guid: 8506895a37ca4c4448873178b0702e2e, type: 3}
       propertyPath: m_LocalRotation.w
