@@ -19,10 +19,14 @@ public class ApplyDamage : MonoBehaviour
     }
     public void DamageIt()
     {
-        foreach(Collider col in targets)
+        foreach (Collider col in targets)
         {
-            col.GetComponentInChildren<DummyScript>().DamageIt(DamageAmount);
+            if (col != null)
+            {
+                col.GetComponentInChildren<DummyScript>().DamageIt(DamageAmount);
+            }    
         }
+        targets.RemoveAll(t => t == null);
     }
 
     private void OnTriggerEnter(Collider other)

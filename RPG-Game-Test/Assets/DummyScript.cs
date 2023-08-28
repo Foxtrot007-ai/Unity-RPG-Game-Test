@@ -16,7 +16,7 @@ public class DummyScript : MonoBehaviour
     public int lvl;
     public Transform mainCamera;
     public GameObject DeathEffect;
-    private void Awake()
+    private void Start()
     {
         text = GetComponentInChildren<TextMeshPro>();
         text.text = "LVL " + lvl + " " + hp + "/" + maxHp;
@@ -79,9 +79,9 @@ public class DummyScript : MonoBehaviour
             if (type == Type.Wolf)
             {
                 GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>().AddExperiencePoints(GetComponentInParent<EnemyAI>().level);
-                GameObject temp = Instantiate(DeathEffect, transform.position, transform.rotation);
-                temp.transform.localScale = new Vector3(2, 2, 2);
-                Destroy(temp, 0.3f);
+               // GameObject temp = Instantiate(DeathEffect, transform.position, transform.rotation);
+                //temp.transform.localScale = new Vector3(2, 2, 2);
+               // Destroy(temp, 0.3f);
                 int number = transform.parent.gameObject.GetComponent<EnemyAI>().myNumber;
                 transform.parent.gameObject.GetComponent<EnemyAI>().enemySpawner.ResetMe(number);
                 Destroy(transform.parent.gameObject);

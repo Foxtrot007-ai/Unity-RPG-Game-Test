@@ -46,7 +46,7 @@ public class EnemyAI : MonoBehaviour
         player = GameObject.Find("Character").transform;
         agent = GetComponent<NavMeshAgent>();
 
-        animator.GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         horizontal = Animator.StringToHash("Horizontal");
         vertical = Animator.StringToHash("Vertical");
         attack = Animator.StringToHash("Attack");

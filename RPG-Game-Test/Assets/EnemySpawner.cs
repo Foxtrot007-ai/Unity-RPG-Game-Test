@@ -23,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
         if (Enemies[0] == null && Enemies[1] == null && !respawning)
         {
             respawning = true;
-            Invoke("Respawn", 30f);
+            Invoke("RespawnEnemies", 30f);
         }
     }
     private GameObject CreateEnemy(GameObject SpawnPoint, int number)
@@ -34,15 +34,16 @@ public class EnemySpawner : MonoBehaviour
         TempAI.level = LevelOfEnemy;
         TempAI.spawnPoint = SpawnPoint;
         TempAI.sightRange = 50f;
-        TempAI.attackRange = 3f;
+        TempAI.attackRange = 5f;
+        TempAI.timeBetweenAttacks = 5f;
         TempAI.myNumber = number;
         return TempEnemy;
     }
 
     private void RespawnEnemies()
     {
-        Enemies[0] = CreateEnemy(SpawnPoint0,0);
-        Enemies[1] = CreateEnemy(SpawnPoint1,1);
+        Enemies[0] = CreateEnemy(SpawnPoint0, 0);
+        Enemies[1] = CreateEnemy(SpawnPoint1, 1);
         respawning = false;
     }
 
