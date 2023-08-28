@@ -71,6 +71,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseTeleport"",
+                    ""type"": ""Button"",
+                    ""id"": ""4c2063d8-032f-4c45-8922-158694c1104a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -172,6 +181,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Block"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b41b4ee2-d564-4a1c-b7e5-906fa0357466"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseTeleport"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -185,6 +205,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerMovement_StrongAttack = m_PlayerMovement.FindAction("StrongAttack", throwIfNotFound: true);
         m_PlayerMovement_WirlAttack = m_PlayerMovement.FindAction("WirlAttack", throwIfNotFound: true);
         m_PlayerMovement_Block = m_PlayerMovement.FindAction("Block", throwIfNotFound: true);
+        m_PlayerMovement_UseTeleport = m_PlayerMovement.FindAction("UseTeleport", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -251,6 +272,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerMovement_StrongAttack;
     private readonly InputAction m_PlayerMovement_WirlAttack;
     private readonly InputAction m_PlayerMovement_Block;
+    private readonly InputAction m_PlayerMovement_UseTeleport;
     public struct PlayerMovementActions
     {
         private @PlayerControls m_Wrapper;
@@ -260,6 +282,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @StrongAttack => m_Wrapper.m_PlayerMovement_StrongAttack;
         public InputAction @WirlAttack => m_Wrapper.m_PlayerMovement_WirlAttack;
         public InputAction @Block => m_Wrapper.m_PlayerMovement_Block;
+        public InputAction @UseTeleport => m_Wrapper.m_PlayerMovement_UseTeleport;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -284,6 +307,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Block.started += instance.OnBlock;
             @Block.performed += instance.OnBlock;
             @Block.canceled += instance.OnBlock;
+            @UseTeleport.started += instance.OnUseTeleport;
+            @UseTeleport.performed += instance.OnUseTeleport;
+            @UseTeleport.canceled += instance.OnUseTeleport;
         }
 
         private void UnregisterCallbacks(IPlayerMovementActions instance)
@@ -303,6 +329,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Block.started -= instance.OnBlock;
             @Block.performed -= instance.OnBlock;
             @Block.canceled -= instance.OnBlock;
+            @UseTeleport.started -= instance.OnUseTeleport;
+            @UseTeleport.performed -= instance.OnUseTeleport;
+            @UseTeleport.canceled -= instance.OnUseTeleport;
         }
 
         public void RemoveCallbacks(IPlayerMovementActions instance)
@@ -327,5 +356,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnStrongAttack(InputAction.CallbackContext context);
         void OnWirlAttack(InputAction.CallbackContext context);
         void OnBlock(InputAction.CallbackContext context);
+        void OnUseTeleport(InputAction.CallbackContext context);
     }
 }

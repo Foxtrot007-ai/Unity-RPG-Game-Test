@@ -20,6 +20,7 @@ public class InputManager : MonoBehaviour
     public bool strongAttackUsed = false;
     public bool wirlAttackUsed = false;
     public bool blockUsed = false;
+    public bool teleportUsed = false;
     public bool usingMoveStarted = false;
     public int animationState = 0;
     public bool stateBLock = false;
@@ -54,6 +55,8 @@ public class InputManager : MonoBehaviour
             playerControls.PlayerMovement.WirlAttack.canceled += i => wirlAttackUsed = false;
             playerControls.PlayerMovement.Block.performed += i => blockUsed = true;
             playerControls.PlayerMovement.Block.canceled += i => blockUsed = false;
+            playerControls.PlayerMovement.UseTeleport.performed += i => teleportUsed = true;
+            playerControls.PlayerMovement.UseTeleport.canceled += i => teleportUsed = false;
         }
         playerControls.Enable();
     }

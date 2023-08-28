@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DummyScript : MonoBehaviour
 {
@@ -50,6 +51,12 @@ public class DummyScript : MonoBehaviour
         if (type == Type.Wolf)
         {
             lvl = GetComponentInParent<EnemyAI>().level;
+            if (GetComponentInParent<EnemyAI>().restoreHp)
+            {
+                Debug.Log("restore");
+                hp = maxHp;
+                GetComponentInParent<EnemyAI>().restoreHp = false;
+            }
         }
         transform.LookAt(mainCamera);
     }
@@ -79,7 +86,14 @@ public class DummyScript : MonoBehaviour
             {
                 hp = maxHp;
                 GameObject temp = GameObject.FindGameObjectWithTag("Player");
-                temp.GetComponent<Rigidbody>().MovePosition(respawnPoint.transform.position);
+                if (temp.GetComponent<PlayerManager>().inBossFight)
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+                }
+                else
+                {
+                    temp.GetComponent<Rigidbody>().MovePosition(respawnPoint.transform.position);
+                }
             }
 
             if (type == Type.Wolf)

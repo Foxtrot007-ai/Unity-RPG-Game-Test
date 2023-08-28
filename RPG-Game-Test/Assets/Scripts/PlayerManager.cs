@@ -13,6 +13,7 @@ public class PlayerManager : MonoBehaviour
     public int experiencePoints = 0;
     public int experienceLimit = 100;
     public int level = 1;
+    public bool inBossFight = false;
 
     private void Awake()
     {

@@ -35,6 +35,7 @@ public class EnemyAI : MonoBehaviour
     public int myNumber;
     public GameObject spawnPoint;
     public bool returnedToSpawn;
+    public bool restoreHp = false;
     
     //attacking
     public float timeBetweenAttacks;
@@ -57,6 +58,10 @@ public class EnemyAI : MonoBehaviour
         Vector3 distanceToSpawnPoint = transform.position - spawnPoint.transform.position;
         if (distanceToSpawnPoint.magnitude < 1f)
         {
+            if (!returnedToSpawn)
+            {
+                restoreHp = true;
+            }
             returnedToSpawn = true;
         }
         else
@@ -92,6 +97,7 @@ public class EnemyAI : MonoBehaviour
         Vector3 distanceToSpawnPoint = transform.position - spawnPoint.transform.position;
         if(distanceToSpawnPoint.magnitude < 1f)
         {
+            restoreHp = true;
             returnedToSpawn = true;
         }
     }
@@ -109,7 +115,6 @@ public class EnemyAI : MonoBehaviour
         if (!alreadyAttacked)
         {
             //attacking
-            Debug.Log("Attack player");
             Invoke(nameof(useAttack), 0.5f);
             animationState = 2;
             alreadyAttacked = true;
@@ -131,7 +136,6 @@ public class EnemyAI : MonoBehaviour
     private void Waiting()
     {
         animationState = 0;
-        Debug.Log("Waiting");
     }
 
     private void SetAnimation()
