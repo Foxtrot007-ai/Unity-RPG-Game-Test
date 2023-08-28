@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class PlayerManager : MonoBehaviour
 
     private void Awake()
     {
+        level = PlayerPrefs.GetInt("Level", 1);
+        experiencePoints = PlayerPrefs.GetInt("experiencePoints", 0);
+        experienceLimit = 50 + level * 50;
+        
         inputManager = GetComponent<InputManager>();
         animatorManager = GetComponent<AnimatorManager>();
         cameraManager = FindObjectOfType<CameraManager>();
@@ -42,7 +47,9 @@ public class PlayerManager : MonoBehaviour
             experiencePoints = 0;
             experienceLimit += 50;
             level += 1;
+            PlayerPrefs.SetInt("Level", level);
             GetComponentInChildren<DummyScript>().maxHp = level * 80;
         }
+        PlayerPrefs.SetInt("experiencePoints", experiencePoints);
     }
 }

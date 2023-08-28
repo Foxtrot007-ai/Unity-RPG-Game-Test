@@ -16,6 +16,7 @@ public class DummyScript : MonoBehaviour
     public int lvl;
     public Transform mainCamera;
     public GameObject DeathEffect;
+    public bool regenerateHP = false;
     private void Start()
     {
         text = GetComponentInChildren<TextMeshPro>();
@@ -39,6 +40,11 @@ public class DummyScript : MonoBehaviour
         if (type == Type.Player)
         {
             lvl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>().level;
+            if (!regenerateHP)
+            {
+                regenerateHP = true;
+                Invoke("RegenerateHealthPoints", 1f);
+            }
         }
 
         if (type == Type.Wolf)
@@ -89,6 +95,14 @@ public class DummyScript : MonoBehaviour
         }
 
         text.text = "LVL " + lvl + " " + hp + "/" + maxHp;
+    }
+
+    public void RegenerateHealthPoints()
+    {
+        hp += lvl;
+        if (hp > maxHp) hp = maxHp;
+
+        regenerateHP = false;
     }
 
 }
