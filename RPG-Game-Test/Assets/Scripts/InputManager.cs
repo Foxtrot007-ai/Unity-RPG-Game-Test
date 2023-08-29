@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour
@@ -26,10 +24,13 @@ public class InputManager : MonoBehaviour
     public bool stateBLock = false;
     public bool stateLoco = false;
 
+    public int bossDefeated = 0;
+
     public GameObject StrongAttackHitbox;
     public GameObject WirlAttackHitbox;
     public GameObject WirlEffectPoint;
     public GameObject electricSlash;
+    public GameObject iceSlash;
     public Transform savedEffectPoint;
 
     private float moveAmount;
@@ -37,6 +38,7 @@ public class InputManager : MonoBehaviour
     public float horizontalInput;
     private void Awake()
     {
+        bossDefeated = PlayerPrefs.GetInt("BossDefeated", 0);
         Cursor.visible = false;
         usingMoveStarted = false;
         animationState = 0;
@@ -57,6 +59,8 @@ public class InputManager : MonoBehaviour
             playerControls.PlayerMovement.Block.canceled += i => blockUsed = false;
             playerControls.PlayerMovement.UseTeleport.performed += i => teleportUsed = true;
             playerControls.PlayerMovement.UseTeleport.canceled += i => teleportUsed = false;
+            
+           
         }
         playerControls.Enable();
     }
@@ -124,7 +128,15 @@ public class InputManager : MonoBehaviour
 
     public void MakeWirlEffect()
     {
-        GameObject temp = Instantiate(electricSlash, savedEffectPoint.position, savedEffectPoint.rotation);
+        GameObject temp;
+        if (bossDefeated == 1)
+        {
+            temp = Instantiate(iceSlash, savedEffectPoint.position, savedEffectPoint.rotation);
+        }
+        else
+        {
+            temp = Instantiate(electricSlash, savedEffectPoint.position, savedEffectPoint.rotation);
+        }
         temp.transform.localScale = new Vector3(6, 6, 6);
         Destroy(temp, 0.3f);
     }

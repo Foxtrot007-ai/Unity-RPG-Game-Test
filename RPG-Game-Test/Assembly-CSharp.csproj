@@ -68,6 +68,8 @@
     <Compile Include="Assets\CameraManager.cs" />
     <Compile Include="Assets\TeleportScript.cs" />
     <Compile Include="Assets\EnemyAI.cs" />
+    <Compile Include="Assets\Scripts\Menu.cs" />
+    <Compile Include="Assets\SnowDamage.cs" />
     <Compile Include="Assets\DummyScript.cs" />
   </ItemGroup>
   <ItemGroup>

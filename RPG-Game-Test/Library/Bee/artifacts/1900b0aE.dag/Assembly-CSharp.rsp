@@ -367,8 +367,10 @@
 "Assets/EnemySpawner.cs"
 "Assets/PlayerControls.cs"
 "Assets/Scripts/InputManager.cs"
+"Assets/Scripts/Menu.cs"
 "Assets/Scripts/PlayerLocomotion.cs"
 "Assets/Scripts/PlayerManager.cs"
+"Assets/SnowDamage.cs"
 "Assets/TeleportScript.cs"
 -langversion:9.0
 

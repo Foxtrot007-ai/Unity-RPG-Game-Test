@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Dummy
   - Teleport
+  - DefeatedInfo
   layers:
   - Default
   - TransparentFX

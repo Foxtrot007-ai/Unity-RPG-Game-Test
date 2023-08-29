@@ -4,13 +4,9 @@ using UnityEngine;
 
 public class ApplyDamage : MonoBehaviour
 {
-    public InputManager inputManager;
     public List<Collider> targets = new List<Collider>();
     public int DamageAmount;
-    private void Awake()
-    {
-        inputManager = FindObjectOfType<InputManager>();
-    }
+ 
 
     public void UseIt(float time, int damage)
     {

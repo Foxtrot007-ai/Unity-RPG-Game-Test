@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
@@ -42,15 +43,25 @@ public class PlayerManager : MonoBehaviour
     }
     public void AddExperiencePoints(int enemyLvl)
     {
-        experiencePoints += enemyLvl * 10;
+        experiencePoints += enemyLvl * 5;
         if(experiencePoints > experienceLimit)
         {
             experiencePoints = 0;
-            experienceLimit += 50;
+            experienceLimit += 100;
             level += 1;
             PlayerPrefs.SetInt("Level", level);
             GetComponentInChildren<DummyScript>().maxHp = level * 80;
         }
         PlayerPrefs.SetInt("experiencePoints", experiencePoints);
+    }
+
+    public void ReturnHome()
+    {
+        Invoke("ChangeScene", 10f);
+    }
+
+    public void ChangeScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 }

@@ -225,7 +225,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputManager: {fileID: 0}
-  target: {fileID: 0}
+  targets: []
+  DamageAmount: 0
 --- !u!1 &398876565758060105
 GameObject:
   m_ObjectHideFlags: 0
@@ -1398,6 +1399,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10c848c3adab7e248a9e936166b3c2f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  experiencePoints: 0
+  experienceLimit: 100
+  level: 1
+  inBossFight: 0
 --- !u!114 &6781021770529484681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1418,6 +1423,7 @@ MonoBehaviour:
   strongAttackUsed: 0
   wirlAttackUsed: 0
   blockUsed: 0
+  teleportUsed: 0
   usingMoveStarted: 0
   animationState: 0
   stateBLock: 0
@@ -1855,6 +1861,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3838283938857126083}
+  - component: {fileID: 7307447354693017938}
   m_Layer: 6
   m_Name: HealthInfoPivot
   m_TagString: Untagged
@@ -1878,6 +1885,27 @@ Transform:
   - {fileID: 4377167880140405050}
   m_Father: {fileID: 7741288134308339338}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7307447354693017938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2717803835575605325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c089e5494fe2f244791b4e0581d04ab7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
+  respawnPoint: {fileID: 0}
+  text: {fileID: 0}
+  hp: 100
+  maxHp: 100
+  lvl: 0
+  mainCamera: {fileID: 0}
+  DeathEffect: {fileID: 0}
+  regenerateHP: 0
 --- !u!1 &2755497918098639444
 GameObject:
   m_ObjectHideFlags: 0
@@ -2787,7 +2815,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputManager: {fileID: 0}
-  target: {fileID: 0}
+  targets: []
+  DamageAmount: 0
 --- !u!1 &5891642158909930178
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +11,7 @@ public class DummyScript : MonoBehaviour
     public enum Type { Dummy, Wolf, Player}
 
     public Type type;
+    public bool IamBoss = false;
     public GameObject respawnPoint;
     public TextMeshPro text;
     public int hp = 100;
@@ -17,11 +19,17 @@ public class DummyScript : MonoBehaviour
     public int lvl;
     public Transform mainCamera;
     public GameObject DeathEffect;
+    public GameObject defeatedInfo;
     public bool regenerateHP = false;
     private void Start()
     {
         text = GetComponentInChildren<TextMeshPro>();
         text.text = "LVL " + lvl + " " + hp + "/" + maxHp;
+        if (IamBoss)
+        {
+            defeatedInfo = GameObject.FindGameObjectWithTag("DefeatedInfo");
+            defeatedInfo.SetActive(false);
+        }
 
         if (type == Type.Player)
         {
@@ -103,7 +111,17 @@ public class DummyScript : MonoBehaviour
                 //temp.transform.localScale = new Vector3(2, 2, 2);
                // Destroy(temp, 0.3f);
                 int number = transform.parent.gameObject.GetComponent<EnemyAI>().myNumber;
-                transform.parent.gameObject.GetComponent<EnemyAI>().enemySpawner.ResetMe(number);
+                if (IamBoss)
+                {
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<InputManager>().bossDefeated = 1;
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>().ReturnHome();
+                    defeatedInfo.SetActive(true);
+                    PlayerPrefs.SetInt("BossDefeated", 1);
+                }
+                else
+                {
+                    transform.parent.gameObject.GetComponent<EnemyAI>().enemySpawner.ResetMe(number);
+                }
                 Destroy(transform.parent.gameObject);
             }
         }
