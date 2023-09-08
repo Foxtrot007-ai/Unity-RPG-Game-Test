@@ -119,6 +119,7 @@
 -define:ENABLE_INPUT_SYSTEM
 -define:ENABLE_LEGACY_INPUT_MANAGER
 -define:TEXTCORE_FONT_ENGINE_1_5_OR_NEWER
+-define:UNITY_POST_PROCESSING_STACK_V2
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
 -r:"C:/Program Files/Unity/Hub/Editor/2022.3.7f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
@@ -337,6 +338,8 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.InputSystem.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.Performance.Profile-Analyzer.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.PlasticSCM.Editor.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Unity.Postprocessing.Editor.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Unity.Postprocessing.Runtime.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.Rider.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.ref.dll"
@@ -359,19 +362,19 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.7f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.7f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
-"Assets/AnimatorManager.cs"
-"Assets/ApplyDamage.cs"
-"Assets/CameraManager.cs"
-"Assets/DummyScript.cs"
-"Assets/EnemyAI.cs"
-"Assets/EnemySpawner.cs"
-"Assets/PlayerControls.cs"
+"Assets/Scripts/AnimatorManager.cs"
+"Assets/Scripts/ApplyDamage.cs"
+"Assets/Scripts/CameraManager.cs"
+"Assets/Scripts/DummyScript.cs"
+"Assets/Scripts/EnemyAI.cs"
+"Assets/Scripts/EnemySpawner.cs"
 "Assets/Scripts/InputManager.cs"
 "Assets/Scripts/Menu.cs"
+"Assets/Scripts/PlayerControls.cs"
 "Assets/Scripts/PlayerLocomotion.cs"
 "Assets/Scripts/PlayerManager.cs"
-"Assets/SnowDamage.cs"
-"Assets/TeleportScript.cs"
+"Assets/Scripts/SnowDamage.cs"
+"Assets/Scripts/TeleportScript.cs"
 -langversion:9.0
 
 /deterministic

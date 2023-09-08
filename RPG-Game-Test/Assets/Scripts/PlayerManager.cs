@@ -40,6 +40,7 @@ public class PlayerManager : MonoBehaviour
     private void LateUpdate()
     {
         cameraManager.HandleAllCameraMovement();
+       
     }
     public void AddExperiencePoints(int enemyLvl)
     {
@@ -64,4 +65,6 @@ public class PlayerManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
+
+ 
 }

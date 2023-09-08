@@ -102,6 +102,8 @@ public class InputManager : MonoBehaviour
                 {
                     dmg *= 3;
                 }
+
+                StrongAttackHitbox.GetComponent<ApplyDamage>().LookAtTarget(transform);
                 StrongAttackHitbox.GetComponent<ApplyDamage>().UseIt(1f, dmg);
             }
 
