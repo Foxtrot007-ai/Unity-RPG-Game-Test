@@ -669,13 +669,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Unity.AI.Navigation.Player.csproj">
-      <Project>{57C2531D-AB0C-3400-A858-5EEC496D6AEB}</Project>
-      <Name>Unity.AI.Navigation.Player</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.Postprocessing.Runtime.Player.csproj">
       <Project>{35023D6C-9357-AFB0-D1AC-202592C5BA3F}</Project>
       <Name>Unity.Postprocessing.Runtime.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.AI.Navigation.Player.csproj">
+      <Project>{57C2531D-AB0C-3400-A858-5EEC496D6AEB}</Project>
+      <Name>Unity.AI.Navigation.Player</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.Core.Player.csproj">
       <Project>{55F65977-AC1A-C213-D8BD-B52BEAF7CB42}</Project>
